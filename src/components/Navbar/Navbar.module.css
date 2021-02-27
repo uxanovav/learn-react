@@ -1,4 +1,29 @@
 nav {
-    background-color: brown;
-    grid-area: navbar;
+  background-color: rgb(48, 160, 180);
+  grid-area: navbar;
+  color: beige;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbutton {
+  display: flex;
+  justify-content: center;
+  border-bottom: beige 1px dashed;
+  cursor: pointer;
+  width: 100%;
+}
+
+nav a {
+  color:beige !important;
+  text-decoration: none;
+  transition: 0.5s ease;
+}
+
+nav a:active {
+  background-color: rgb(23, 82, 92);
+}
+
+nav a.active {
+  background-color: rgb(34, 113, 128);
 }

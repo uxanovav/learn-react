@@ -1,24 +1,35 @@
 import React from "react";
+import { BrowserRouter, NavLink } from "react-router-dom";
 import style from  "./Navbar.module.css";
 
 const Navbar = () => {
   return (
     <nav className = {style.nav}>
-      <div>
-        <a>Profile</a>
+      <NavLink to="/profile" activeClassName={style.active}>
+      <div className= {style.navbutton}>
+        <h2>PROFILE</h2>
       </div>
-      <div>
-        <a>Messages</a>
+      </NavLink>
+      <NavLink to="/dialogs" activeClassName={style.active}>
+      <div className= {style.navbutton}>
+        <h2>MESSAGES</h2>
       </div>
-      <div>
-        <a>News</a>
+      </NavLink>
+      <NavLink to="/news" activeClassName={style.active} >
+      <div className= {style.navbutton}>
+        <h2>NEWS</h2>
       </div>
-      <div>
-        <a>Music</a>
+      </NavLink>
+      <NavLink to="/music" activeClassName={style.active}>
+      <div className= {style.navbutton}>
+        <h2>MUSIC</h2>
       </div>
-      <div>
-        <a>Settings</a>
+      </NavLink>
+      <NavLink to="/settings" activeClassName={style.active}>
+      <div className= {style.navbutton}>
+        <h2>SETTINGS</h2>
       </div>
+      </NavLink>
     </nav>
   );
 };

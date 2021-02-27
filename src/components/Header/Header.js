@@ -4,8 +4,9 @@ import style from "./Header.module.css";
 const Header = () => {
     return (
         <header className={style.header}>
-            <img src = "https://png.pngtree.com/png-clipart/20190516/original/pngtree-lone-wolf-vector-illustration-png-image_3584952.jpg" />
-        </header>
+            <img src="https://cdn.icon-icons.com/icons2/2858/PNG/128/blog_rss_logo_icon_181654.png"/>
+            <h1>TRAINING SOCIAL-NETWORK</h1>
+            </header>
     )
 }
 

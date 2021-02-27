@@ -1,8 +1,12 @@
-img {
-    width: 60px;
+header img {
+    height: 80px;
+    margin: 10px;
 }
 
 header {
+    display: flex;
     grid-area: header;
-    background-color: aqua;
+    background-color: rgb(48, 160, 180);
+    color: beige;
 }
+

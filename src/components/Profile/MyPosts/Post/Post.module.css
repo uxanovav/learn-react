@@ -1,3 +1,17 @@
 .post img {
+    width: 60px;
     border-radius: 30px;
 }
+
+.like img{
+    width: 30px;
+    cursor: pointer;
+}
+
+.like {
+    width: 60px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 30px;
+}
+
