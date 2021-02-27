@@ -1,0 +1,4 @@
+.main_content {
+    background-color: blue;
+    grid-area: content;
+}
