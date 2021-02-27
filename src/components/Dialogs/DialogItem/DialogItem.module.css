@@ -1,0 +1,23 @@
+
+.dialogItem {
+  padding-left: 15px;
+  padding-top: 25px;
+  font-size: x-large;
+  color: dimgray;
+  height: 60px;
+  border-bottom: rgb(197, 197, 197) 1px dotted;
+  cursor: pointer;
+}
+a {
+  display: block;
+  text-decoration: none;
+  transition: .3s linear;
+}
+ a:active {
+  background-color: rgb(184, 184, 184);
+}
+
+ a.active {
+  background-color: rgb(221, 221, 221);
+  color: rgb(34, 34, 34);
+}

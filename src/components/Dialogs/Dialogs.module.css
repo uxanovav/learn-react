@@ -1,0 +1,15 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 6fr;
+  grid-column-gap: 10px;
+  height: 100%;
+}
+
+.dialogList {
+  height: 100%;
+}
+
+.messageList {
+  background-color: rgb(242, 255, 251);
+}
+
