@@ -3,10 +3,11 @@
   grid-template-areas:
     "header header"
     "navbar content";
-  grid-template-rows: 1fr 10fr;
+  grid-template-rows: 100px 10fr;
   grid-template-columns: 2fr 10fr;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
+  min-height: 1000px;
 }
 
 body {

@@ -1,10 +1,10 @@
 import React from "react";
 import style from "./MessageItem.module.css";
 
-const MessageItem = () => {
+const MessageItem = (props) => {
   return (
     <div className={style.messageContent}>
-        Do est eu magna labore cillum officia minim ea ad.
+       {props.message}
       </div>
   );
 };

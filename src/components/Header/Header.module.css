@@ -8,5 +8,6 @@ header {
     grid-area: header;
     background-color: rgb(48, 160, 180);
     color: beige;
+    height: 100px;
 }
 
