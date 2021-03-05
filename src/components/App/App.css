@@ -1,10 +1,10 @@
 .app-wrapper {
   display: grid;
   grid-template-areas:
-    "header header"
-    "navbar content";
+    "header header header"
+    "navbar content friends";
   grid-template-rows: 100px 10fr;
-  grid-template-columns: 2fr 10fr;
+  grid-template-columns: 2fr 8fr 2fr;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   min-height: 1000px;

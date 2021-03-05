@@ -1,0 +1,9 @@
+.description {
+    display: flex;
+}
+
+.description img {
+    margin: 10px;
+    width: 150px;
+    border-radius: 50%;
+}
