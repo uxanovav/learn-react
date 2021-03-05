@@ -40,29 +40,34 @@ let state = {
           "Sint non aute sit dolore ea dolore anim anim et exercitation laborum anim.",
         likecount: 55,
       },
-    ]
+    ],
   },
   dialogsPage: {
     dialogsData: [
       {
         id: 1,
         name: "Anna",
+        avatar: "http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png",
       },
       {
         id: 2,
         name: "Sveta",
+        avatar: "http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png",
       },
       {
         id: 3,
         name: "Artem",
+        avatar: "http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png",
       },
       {
         id: 4,
         name: "Vlad",
+        avatar: "http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png",
       },
       {
         id: 5,
         name: "Sasha",
+        avatar: "http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png",
       },
     ],
 
