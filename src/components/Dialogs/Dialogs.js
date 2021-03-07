@@ -12,14 +12,20 @@ const Dialogs = (props) => {
     <MessageItem message={message.message} sender={message.sender} />
   ));
 
+let newMessage = React.createRef();
+
+let addMessage = () => {
+  alert(newMessage.current.value);
+}
+
   return (
     <div className={style.dialogs}>
       <div className={style.dialogList}>{dialogsArr}</div>
       <div className={style.messageList}>
         <div>{messagesArr}</div>
         <div className={style.submitPanel}>
-          <textarea></textarea>
-          <button>Submit</button>
+          <textarea ref={newMessage}></textarea>
+          <button onClick={addMessage}>Submit</button>
         </div>
       </div>
     </div>

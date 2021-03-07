@@ -1,3 +1,5 @@
+import { rerender } from "../render";
+
 let state = {
   profilePage: {
     postsData: [
@@ -41,6 +43,7 @@ let state = {
         likecount: 55,
       },
     ],
+    currentPostText: "",
   },
   dialogsPage: {
     dialogsData: [
@@ -109,6 +112,20 @@ let state = {
       },
     ],
   },
+};
+
+export const addPost = (text) => {
+  state.profilePage.postsData.unshift({
+    id: 5,
+    message: text,
+    likecount: 0,
+  });
+  rerender(state, addPost,updateCurrentPostText);
+};
+
+export const updateCurrentPostText = (text) => {
+  state.profilePage.currentPostText = text;
+  rerender(state,addPost,updateCurrentPostText)
 };
 
 export default state;

@@ -14,8 +14,10 @@ const App = (props) => {
         <Navbar />
         <Content
           state={props.state}
-        />
-        <Friends/>
+          addPost={props.addPost}
+          updateCurrentPostText={props.updateCurrentPostText}
+          />
+        <Friends />
       </div>
     </BrowserRouter>
   );
