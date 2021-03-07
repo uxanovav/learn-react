@@ -2,4 +2,29 @@
 .messageContent {
   font-size: large;
   padding: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.messageContent img {
+  width: 60px;
+  border-radius: 30px;
+  margin: 10px;
+}
+
+.yourMessageContent {
+  font-size: large;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  margin-right: 0px;
+  justify-content: flex-end;
+  background-color: rgb(152, 194, 181);
+  text-align: end;
+}
+
+.yourMessageContent img {
+  width: 60px;
+  border-radius: 30px;
+  margin: 10px;
 }
