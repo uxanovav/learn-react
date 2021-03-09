@@ -8,6 +8,7 @@ import Settings from "../Settings/Settings";
 import style from "./Content.module.css";
 
 const Content = (props) => {
+    debugger;
   return (
     <div className={style.main_content}>
       <Route
