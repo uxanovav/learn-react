@@ -1,3 +1,6 @@
+const ADD_POST = "ADD-POST";
+const UPDATE_CURRENT_TEXT = "UPDATE-CURRENT-TEXT";
+
 let store = {
   _state: {
     profilePage: {
@@ -116,14 +119,14 @@ let store = {
     return this._state;
   },
   dispatch (action){
-    if (action.type === "ADD-POST"){
+    if (action.type === ADD_POST){
       this._state.profilePage.postsData.unshift({
         id: 5,
         message: action.newText,
         likecount: 0,
       });
       this.rerender(this._state, this.dispatch.bind(this));
-    } else if (action.type === "UPDATE-CURRENT-TEXT") {
+    } else if (action.type === UPDATE_CURRENT_TEXT) {
       this._state.profilePage.currentPostText = action.text;
       this.rerender(this._state, this.dispatch.bind(this));
     }
@@ -133,6 +136,14 @@ let store = {
   subscriber(observer){
     this.rerender = observer;
   }
+}
+
+export const addPostActionCreator = (text) =>{
+  return {type: ADD_POST, newText: text}
+}
+
+export const updatePostTextActionCreator = (text) =>{
+  return {type: UPDATE_CURRENT_TEXT, text: text}
 }
 
 export default store;
