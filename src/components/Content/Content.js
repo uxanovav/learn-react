@@ -8,17 +8,13 @@ import Settings from "../Settings/Settings";
 import style from "./Content.module.css";
 
 const Content = (props) => {
-    debugger;
+  debugger;
   return (
     <div className={style.main_content}>
       <Route
         path="/profile"
         render={(el) => (
-          <Profile
-            state={props.state.profilePage}
-            addPost={props.addPost}
-            updateCurrentPostText={props.updateCurrentPostText}
-            />
+          <Profile state={props.state.profilePage} dispatch={props.dispatch} />
         )}
       />
       <Route

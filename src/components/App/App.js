@@ -7,17 +7,13 @@ import Navbar from "../Navbar/Navbar";
 import "./App.css";
 
 const App = (props) => {
-    debugger;
+  debugger;
   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
         <Navbar />
-        <Content
-          state={props.state}
-          addPost={props.addPost}
-          updateCurrentPostText={props.updateCurrentPostText}
-          />
+        <Content state={props.state} dispatch={props.dispatch} />
         <Friends />
       </div>
     </BrowserRouter>

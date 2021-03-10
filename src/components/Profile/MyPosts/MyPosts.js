@@ -2,22 +2,23 @@ import React from "react";
 import Post from "./Post/Post";
 import style from "./MyPosts.module.css";
 
-const MyPosts = ({postsData, addPost, currentPostText, updateCurrentPostText}) => {
+const MyPosts = ({postsData,currentPostText, dispatch}) => {
+  debugger;
   let postsArr = postsData.map((post) => (
     <Post key={post.id} message={post.message} likecount={post.likecount} />
   ));
 
-  console.log(addPost);
   let newPost = React.createRef();
   
   let add = () => {
-    addPost(newPost.current.value);
+    let newText = newPost.current.value
+    dispatch({type: "ADD-POST", newText: newText});
     newPost.current.value = "";
-    updateCurrentPostText("");
   }
 
   let updatePostText = () => {
-    updateCurrentPostText(newPost.current.value);
+    let text = newPost.current.value
+    dispatch({type: "UPDATE-CURRENT-TEXT", text: text})
   }
 
   return (

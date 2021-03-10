@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import style from "./Profile.module.css";
 
 const Profile = (props) => {
-    debugger;
+  debugger;
   return (
     <div>
       <div className={style.main_image}>
@@ -14,9 +14,7 @@ const Profile = (props) => {
       <MyPosts
         postsData={props.state.postsData}
         currentPostText={props.state.currentPostText}
-        addPost={props.addPost}
-        
-        updateCurrentPostText={props.updateCurrentPostText}
+        dispatch={props.dispatch}
       />
     </div>
   );

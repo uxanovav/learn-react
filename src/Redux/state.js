@@ -1,7 +1,3 @@
-let rerender = () => {
-
-}
-
 let store = {
   _state: {
     profilePage: {
@@ -116,22 +112,27 @@ let store = {
       ],
     }
   },
-  addPost (text)  {
-    this._state.profilePage.postsData.unshift({
-      id: 5,
-      message: text,
-      likecount: 0,
-    });
-    rerender(this._state, this.addPost.bind(this),this.updateCurrentPostText.bind(this));
+  getState() {
+    return this._state;
   },
-  updateCurrentPostText(text){
-    this._state.profilePage.currentPostText = text;
-    rerender(this._state, this.addPost.bind(this),this.updateCurrentPostText.bind(this));
+  dispatch (action){
+    if (action.type === "ADD-POST"){
+      this._state.profilePage.postsData.unshift({
+        id: 5,
+        message: action.newText,
+        likecount: 0,
+      });
+      this.rerender(this._state, this.dispatch.bind(this));
+    } else if (action.type === "UPDATE-CURRENT-TEXT") {
+      this._state.profilePage.currentPostText = action.text;
+      this.rerender(this._state, this.dispatch.bind(this));
+    }
+  },
+  rerender(){
+  },
+  subscriber(observer){
+    this.rerender = observer;
   }
-}
-
-export const subscriber = (observer) =>{
-  rerender = observer;
 }
 
 export default store;
