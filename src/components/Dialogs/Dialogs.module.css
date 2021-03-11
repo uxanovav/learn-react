@@ -1,5 +1,6 @@
 .dialogs {
   display: grid;
+
   grid-template-columns: 2fr 6fr;
   grid-column-gap: 10px;
   height: 100%;
@@ -17,8 +18,9 @@
 }
 
 .submitPanel {
+  margin-top: 0;
   display: flex;
-  background-color: red;
+
 }
 
 .submitPanel textarea {

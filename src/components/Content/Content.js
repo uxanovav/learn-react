@@ -19,7 +19,9 @@ const Content = (props) => {
       />
       <Route
         path="/dialogs"
-        render={(el) => <Dialogs state={props.state.dialogsPage} />}
+        render={(el) => (
+          <Dialogs state={props.state.dialogsPage} dispatch={props.dispatch} />
+        )}
       />
       <Route path="/news" component={News} />
       <Route path="/music" component={Music} />

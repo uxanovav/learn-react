@@ -1,5 +1,7 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_CURRENT_TEXT = "UPDATE-CURRENT-TEXT";
+const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";
+const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT";
 
 let store = {
   _state: {
@@ -113,6 +115,7 @@ let store = {
               "Amet reprehenderit minim fugiat velit labore mollit aute ullamco voluptate cupidatat laboris non proident enim.",
         },
       ],
+      currentMessageText: ""
     }
   },
   getState() {
@@ -129,6 +132,16 @@ let store = {
     } else if (action.type === UPDATE_CURRENT_TEXT) {
       this._state.profilePage.currentPostText = action.text;
       this.rerender(this._state, this.dispatch.bind(this));
+    } else if (action.type === ADD_NEW_MESSAGE) {
+      this._state.dialogsPage.messagesData.push({
+        sender: 1,
+        message: action.text
+      });
+      this.rerender(this._state, this.dispatch.bind(this));
+
+    } else if (action.type === UPDATE_MESSAGE_TEXT) {
+      this._state.dialogsPage.currentMessageText = action.text;
+      this.rerender(this._state, this.dispatch.bind(this));
     }
   },
   rerender(){
@@ -144,6 +157,14 @@ export const addPostActionCreator = (text) =>{
 
 export const updatePostTextActionCreator = (text) =>{
   return {type: UPDATE_CURRENT_TEXT, text: text}
+}
+
+export const addNewMessageActionCreator = (text) =>{
+  return {type: ADD_NEW_MESSAGE, text: text}
+}
+
+export const updateMessageTextActionCreator = (text) => {
+  return {type: UPDATE_MESSAGE_TEXT, text: text}
 }
 
 export default store;
