@@ -1,32 +1,28 @@
 import React from "react";
 import Post from "./Post/Post";
 import style from "./MyPosts.module.css";
-import { updatePostTextActionCreator, addPostActionCreator} from "../../../Redux/profile-reducer";
 
-const MyPosts = ({postsData,currentPostText, dispatch}) => {
-  debugger;
+const MyPosts = ({addPost,currentPostText,updatePostText,postsData}) => {
   let postsArr = postsData.map((post) => (
     <Post key={post.id} message={post.message} likecount={post.likecount} />
   ));
 
   let newPost = React.createRef();
   
-  let add = () => {
-    let newText = newPost.current.value
-    dispatch(addPostActionCreator(newText));
-    newPost.current.value = "";
+  let onAdd = () => {
+    addPost();
   }
 
-  let updatePostText = () => {
-    let text = newPost.current.value
-    dispatch(updatePostTextActionCreator(text));
+  let onUpdate = () => {
+    let text = newPost.current.value;
+    updatePostText(text);
   }
 
   return (
     <div className={style.myposts}>
       <h2>My Posts</h2>
-      <textarea ref={newPost} onChange={updatePostText} value={currentPostText}/>
-      <button onClick={add}>send</button>
+      <textarea ref={newPost} onChange={onUpdate} value={currentPostText}/>
+      <button onClick={onAdd}>send</button>
       {postsArr}
     </div>
   );

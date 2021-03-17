@@ -74,8 +74,9 @@ export default function dialogsReducer(state = initialState, action) {
   if (action.type === ADD_NEW_MESSAGE) {
     state.messagesData.push({
       sender: 1,
-      message: action.text,
+      message: state.currentMessageText,
     });
+    state.currentMessageText = "";
   } else if (action.type === UPDATE_MESSAGE_TEXT) {
     state.currentMessageText = action.text;
   }

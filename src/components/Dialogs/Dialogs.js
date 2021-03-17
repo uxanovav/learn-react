@@ -1,28 +1,25 @@
 import React from "react";
-import { addNewMessageActionCreator, updateMessageTextActionCreator } from "../../Redux/dialogs-reducer";
 import DialogItem from "./DialogItem/DialogItem";
 import style from "./Dialogs.module.css";
 import MessageItem from "./MessageList/MessageItemt";
 
-const Dialogs = ({state,dispatch}) => {
-  let dialogsArr = state.dialogsData.map((dialog) => (
+const Dialogs = ({addMessage,currentMessageText,updateMessageText,dialogsData,messagesData}) => {
+  let dialogsArr = dialogsData.map((dialog) => (
     <DialogItem name={dialog.name} id={dialog.id} />
   ));
-  let messagesArr = state.messagesData.map((message) => (
+  let messagesArr = messagesData.map((message) => (
     <MessageItem message={message.message} sender={message.sender} />
   ));
 
 let newMessage = React.createRef();
 
-let addMessage = () => {
-  let text = newMessage.current.value;
-  dispatch(addNewMessageActionCreator(text));
-  newMessage.current.value = "";
+let onAdd = () => {
+  addMessage();
 }
 
-let updateMessageText = () => {
+let onUpdate = () => {
   let text = newMessage.current.value;
-  dispatch(updateMessageTextActionCreator(text));
+  updateMessageText(text);
 }
 
   return (
@@ -31,8 +28,8 @@ let updateMessageText = () => {
       <div className={style.messageList}>
         <div>{messagesArr}</div>
         <div className={style.submitPanel}>
-          <textarea ref={newMessage} onChange={updateMessageText}/>
-          <button onClick={addMessage}>Submit</button>
+          <textarea ref={newMessage} onChange={onUpdate} value={currentMessageText}/>
+          <button onClick={onAdd}>Submit</button>
         </div>
       </div>
 

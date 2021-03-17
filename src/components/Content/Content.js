@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Dialogs from "../Dialogs/Dialogs";
+import DialogsContainer from "../Dialogs/DialogsContainer";
 import Music from "../Music/Music";
 import News from "../News/News";
 import Profile from "../Profile/Profile";
@@ -19,7 +19,7 @@ const Content = (props) => {
       <Route
         path="/dialogs"
         render={(el) => (
-          <Dialogs state={props.state.dialogsReducer} dispatch={props.dispatch} />
+          <DialogsContainer state={props.state.dialogsReducer} dispatch={props.dispatch} />
         )}
       />
       <Route path="/news" component={News} />
