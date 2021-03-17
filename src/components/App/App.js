@@ -14,7 +14,7 @@ const App = (props) => {
         <Header />
         <Navbar />
         <Content state={props.state} dispatch={props.dispatch} />
-        <Friends />
+        <Friends state={props.state}/>
       </div>
     </BrowserRouter>
   );

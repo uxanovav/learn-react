@@ -1,7 +1,5 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_CURRENT_TEXT = "UPDATE-CURRENT-TEXT";
-const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";
-const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT";
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
 
 let store = {
   _state: {
@@ -14,19 +12,20 @@ let store = {
         },
         {
           id: 2,
-          message: "Nostrud consequat elit ullamco fugiat exercitation officia.",
+          message:
+            "Nostrud consequat elit ullamco fugiat exercitation officia.",
           likecount: 2,
         },
         {
           id: 3,
           message:
-              "Commodo dolor cupidatat id ex non nulla do deserunt in cupidatat enim laboris ad sit.",
+            "Commodo dolor cupidatat id ex non nulla do deserunt in cupidatat enim laboris ad sit.",
           likecount: 5,
         },
         {
           id: 4,
           message:
-              "Do id excepteur pariatur voluptate reprehenderit eu culpa ex.",
+            "Do id excepteur pariatur voluptate reprehenderit eu culpa ex.",
           likecount: 6,
         },
         {
@@ -37,13 +36,13 @@ let store = {
         {
           id: 6,
           message:
-              "Minim occaecat dolore ad consectetur voluptate ex aliquip incididunt ullamco.",
+            "Minim occaecat dolore ad consectetur voluptate ex aliquip incididunt ullamco.",
           likecount: 12,
         },
         {
           id: 7,
           message:
-              "Sint non aute sit dolore ea dolore anim anim et exercitation laborum anim.",
+            "Sint non aute sit dolore ea dolore anim anim et exercitation laborum anim.",
           likecount: 55,
         },
       ],
@@ -86,7 +85,7 @@ let store = {
         {
           sender: 2,
           message:
-              "Aute qui dolor consectetur cillum cillum ex esse labore nisi dolore deserunt ex.",
+            "Aute qui dolor consectetur cillum cillum ex esse labore nisi dolore deserunt ex.",
         },
         {
           sender: 1,
@@ -95,7 +94,7 @@ let store = {
         {
           sender: 2,
           message:
-              "Dolore laborum reprehenderit laborum anim et aliqua esse et dolor sunt esse excepteur.",
+            "Dolore laborum reprehenderit laborum anim et aliqua esse et dolor sunt esse excepteur.",
         },
         {
           sender: 1,
@@ -112,59 +111,58 @@ let store = {
         {
           sender: 1,
           message:
-              "Amet reprehenderit minim fugiat velit labore mollit aute ullamco voluptate cupidatat laboris non proident enim.",
+            "Amet reprehenderit minim fugiat velit labore mollit aute ullamco voluptate cupidatat laboris non proident enim.",
         },
       ],
-      currentMessageText: ""
+      currentMessageText: "",
+    },
+    friendsPage: {
+      friendsData: [
+        {
+          id:1,
+          name:"Anna",
+          avatar:"http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png"
+        },
+        {
+          id:2,
+          name:"Sveta",
+          avatar:"http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png"
+        },
+        {
+          id:3,
+          name:"Petr",
+          avatar:"http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png"
+        },
+        {
+          id:4,
+          name:"Sasha",
+          avatar:"http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png"
+        },
+        {
+          id:5,
+          name:"Sergey",
+          avatar:"http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png"
+        },
+        {
+          id:6,
+          name:"Artem",
+          avatar:"http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png"
+        }
+      ]
     }
   },
   getState() {
     return this._state;
   },
-  dispatch (action){
-    if (action.type === ADD_POST){
-      this._state.profilePage.postsData.unshift({
-        id: 5,
-        message: action.newText,
-        likecount: 0,
-      });
-      this.rerender(this._state, this.dispatch.bind(this));
-    } else if (action.type === UPDATE_CURRENT_TEXT) {
-      this._state.profilePage.currentPostText = action.text;
-      this.rerender(this._state, this.dispatch.bind(this));
-    } else if (action.type === ADD_NEW_MESSAGE) {
-      this._state.dialogsPage.messagesData.push({
-        sender: 1,
-        message: action.text
-      });
-      this.rerender(this._state, this.dispatch.bind(this));
-
-    } else if (action.type === UPDATE_MESSAGE_TEXT) {
-      this._state.dialogsPage.currentMessageText = action.text;
-      this.rerender(this._state, this.dispatch.bind(this));
-    }
+  dispatch(action) {
+    this._state.profilePage = profileReducer(this._state.profilePage,action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage,action);
+    this.rerender(this.getState(),this.dispatch.bind(store));
   },
-  rerender(){
-  },
-  subscriber(observer){
+  rerender() {},
+  subscriber(observer) {
     this.rerender = observer;
-  }
-}
-
-export const addPostActionCreator = (text) =>{
-  return {type: ADD_POST, newText: text}
-}
-
-export const updatePostTextActionCreator = (text) =>{
-  return {type: UPDATE_CURRENT_TEXT, text: text}
-}
-
-export const addNewMessageActionCreator = (text) =>{
-  return {type: ADD_NEW_MESSAGE, text: text}
-}
-
-export const updateMessageTextActionCreator = (text) => {
-  return {type: UPDATE_MESSAGE_TEXT, text: text}
-}
+  },
+};
 
 export default store;
