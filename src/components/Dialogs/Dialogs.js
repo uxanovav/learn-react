@@ -5,7 +5,6 @@ import style from "./Dialogs.module.css";
 import MessageItem from "./MessageList/MessageItemt";
 
 const Dialogs = ({state,dispatch}) => {
-  console.log("Dialog" + state.dialogsData);
   let dialogsArr = state.dialogsData.map((dialog) => (
     <DialogItem name={dialog.name} id={dialog.id} />
   ));

@@ -8,19 +8,18 @@ import Settings from "../Settings/Settings";
 import style from "./Content.module.css";
 
 const Content = (props) => {
-  debugger;
   return (
     <div className={style.main_content}>
       <Route
         path="/profile"
         render={(el) => (
-          <Profile state={props.state.profilePage} dispatch={props.dispatch} />
+          <Profile state={props.state.profileReducer} dispatch={props.dispatch} />
         )}
       />
       <Route
         path="/dialogs"
         render={(el) => (
-          <Dialogs state={props.state.dialogsPage} dispatch={props.dispatch} />
+          <Dialogs state={props.state.dialogsReducer} dispatch={props.dispatch} />
         )}
       />
       <Route path="/news" component={News} />

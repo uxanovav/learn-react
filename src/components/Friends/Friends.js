@@ -3,7 +3,8 @@ import Friend from "./Friend/Friend";
 import style from "./Friends.module.css";
 
 const Friends = (props) => {
-  let friendsArr = props.state.friendsPage.friendsData.map((friend) => (
+  debugger;
+  let friendsArr = props.state.friendsReducer.friendsData.map((friend) => (
     <Friend id={friend.id} name={friend.name} avatar={friend.avatar} />
   ));
   return (
