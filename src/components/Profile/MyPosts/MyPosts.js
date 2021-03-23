@@ -6,7 +6,6 @@ const MyPosts = ({ postsData, addPost, updatePostText, currentPostText }) => {
   let postsArr = postsData.map((post) => (
     <Post key={post.id} message={post.message} likecount={post.likecount} />
   ));
-
   let newPost = React.createRef();
 
   let onAdd = () => {
