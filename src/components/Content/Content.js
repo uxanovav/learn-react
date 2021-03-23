@@ -13,13 +13,13 @@ const Content = (props) => {
       <Route
         path="/profile"
         render={(el) => (
-          <Profile state={props.state.profileReducer} dispatch={props.dispatch} />
+          <Profile />
         )}
       />
       <Route
         path="/dialogs"
         render={(el) => (
-          <DialogsContainer state={props.state.dialogsReducer} dispatch={props.dispatch} />
+          <DialogsContainer />
         )}
       />
       <Route path="/news" component={News} />

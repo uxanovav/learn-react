@@ -12,8 +12,8 @@ const App = (props) => {
       <div className="app-wrapper">
         <Header />
         <Navbar />
-        <Content state={props.state} dispatch={props.dispatch} />
-        <Friends state={props.state}/>
+        <Content />
+        <Friends />
       </div>
     </BrowserRouter>
   );
