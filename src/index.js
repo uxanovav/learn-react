@@ -2,19 +2,19 @@ import store from "./Redux/redux-store";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App/App";
-import StoreContext from "./storecontext";
+import {Provider} from "react-redux";
 
-export const rerender = (state) => {
+export const rerender = () => {
   ReactDOM.render(
-    <StoreContext.Provider value={store}>
+    <Provider store={store}>
       <App />
-    </StoreContext.Provider>,
+    </Provider>,
     document.getElementById("root")
   );
 };
 
-rerender(store.getState());
+rerender();
 
 store.subscribe(() => {
-  rerender(store.getState());
+  rerender();
 });

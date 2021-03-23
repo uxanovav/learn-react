@@ -38,6 +38,5 @@ let initialState = {
 };
 
 export default function friendsReducer(state = initialState) {
-  debugger;
   return state;
 }

@@ -46,17 +46,27 @@ let initialState = {
 };
 
 export default function profileReducer(state = initialState, action) {
-  if (action.type === ADD_POST) {
-    state.postsData.unshift({
-      id: 5,
-      message: action.newText,
-      likecount: 0,
-    });
-    state.currentPostText = "";
-  } else if (action.type === UPDATE_CURRENT_TEXT) {
-    state.currentPostText = action.text;
+  let stateCopy = { ...state };
+  switch (action.type) {
+    case ADD_POST: {
+      stateCopy.postsData = [...state.postsData];
+      stateCopy.postsData.unshift({
+        id: 5,
+        message: stateCopy.currentPostText,
+        likecount: 0,
+      });
+      stateCopy.currentPostText = "";
+      return stateCopy;
+    }
+
+    case UPDATE_CURRENT_TEXT: {
+      stateCopy.currentPostText = action.text;
+      return stateCopy;
+    }
+    default: {
+      return stateCopy;
+    }
   }
-  return state;
 }
 
 export const addPostActionCreator = (text) => {

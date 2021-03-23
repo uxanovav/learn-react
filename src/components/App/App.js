@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import Content from "../Content/Content";
-import Friends from "../Friends/Friends";
+import FriendsContainer from "../Friends/FriendsContainer";
 import Header from "../Header/Header";
 import Navbar from "../Navbar/Navbar";
 import "./App.css";
@@ -13,7 +13,7 @@ const App = (props) => {
         <Header />
         <Navbar />
         <Content />
-        <Friends />
+        <FriendsContainer />
       </div>
     </BrowserRouter>
   );
