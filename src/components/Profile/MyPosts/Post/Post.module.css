@@ -19,3 +19,20 @@
   justify-content: space-between;
   font-size: 30px;
 }
+
+.liked {
+  color: green;
+  font-weight: bolder;
+}
+
+.unliked {
+  color: black;
+}
+
+.del {
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: small;
+  color: darkgray;
+}

@@ -2,11 +2,21 @@ import React from "react";
 import Post from "./Post/Post";
 import style from "./MyPosts.module.css";
 
-const MyPosts = ({ postsData, addPost, updatePostText, currentPostText }) => {
-  let postsArr = postsData.map((post) => (
-    <Post key={post.id} message={post.message} likecount={post.likecount} />
-  ));
-  let newPost = React.createRef();
+const MyPosts = ({
+  postsData,
+  addPost,
+  updatePostText,
+  currentPostText,
+  addLike,
+  deletePost,
+}) => {
+  let onDelete = (id) => {
+    deletePost(id);
+  };
+
+  let onAddLike = (id) => {
+    addLike(id);
+  };
 
   let onAdd = () => {
     addPost();
@@ -16,6 +26,19 @@ const MyPosts = ({ postsData, addPost, updatePostText, currentPostText }) => {
     let text = newPost.current.value;
     updatePostText(text);
   };
+
+  let postsArr = postsData.map((post) => (
+    <Post
+      id={post.id}
+      key={post.id}
+      message={post.message}
+      likecount={post.likecount}
+      onAddLike={onAddLike}
+      onDelete={onDelete}
+      isLiked={post.liked}
+    />
+  ));
+  let newPost = React.createRef();
 
   return (
     <div className={style.myposts}>
