@@ -58,7 +58,7 @@ export default function profileReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_POST: {
       let newPost = {
-        id: state.postsData[0].id + 1,
+        id: state.postsData.length!=0 ? state.postsData[0].id + 1:0,
         message: state.currentPostText,
         likecount: 0,
         liked: false,
@@ -78,27 +78,25 @@ export default function profileReducer(state = initialState, action) {
     }
 
     case ADD_LIKE: {
-      let changedPost = state.postsData.map((post) => {
-        if (post.id === action.id) {
-          if (post.liked === false) {
-            post.likecount++;
-          } else {
-            post.likecount--;
-          }
-          post.liked = !post.liked;
-        }
-      });
       return {
         ...state,
-        postsData: [...state.postsData],
+        postsData: state.postsData.map((post) => {
+          if (post.id === action.id) {
+            if (post.liked === false) {
+              post.likecount++;
+            } else {
+              post.likecount--;
+            }
+            post.liked = !post.liked;
+          }
+          return post;
+        }),
       };
     }
     case DELETE_POST: {
-      let newPostData = state.postsData.filter((el) => el.id != action.id);
-      console.log(newPostData);
       return {
         ...state,
-        postsData: newPostData,
+        postsData: state.postsData.filter((post) => post.id != action.id),
       };
     }
     default: {
