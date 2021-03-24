@@ -1,0 +1,22 @@
+.userboard {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.userboard img {
+  margin: 10px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.userboard button {
+  width: 50px;
+  font-size: x-large;
+  font-weight: bolder;
+}

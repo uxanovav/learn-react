@@ -10,6 +10,11 @@ const Navbar = () => {
         <h2>PROFILE</h2>
       </div>
       </NavLink>
+      <NavLink to="/users" activeClassName={style.active}>
+      <div className= {style.navbutton}>
+        <h2>USERS</h2>
+      </div>
+      </NavLink>
       <NavLink to="/dialogs" activeClassName={style.active}>
       <div className= {style.navbutton}>
         <h2>MESSAGES</h2>

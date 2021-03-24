@@ -10,14 +10,6 @@ const MyPosts = ({
   addLike,
   deletePost,
 }) => {
-  let onDelete = (id) => {
-    deletePost(id);
-  };
-
-  let onAddLike = (id) => {
-    addLike(id);
-  };
-
   let onAdd = () => {
     addPost();
   };
@@ -33,8 +25,8 @@ const MyPosts = ({
       key={post.id}
       message={post.message}
       likecount={post.likecount}
-      onAddLike={onAddLike}
-      onDelete={onDelete}
+      addLike={addLike}
+      deletePost={deletePost}
       isLiked={post.liked}
     />
   ));

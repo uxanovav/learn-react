@@ -5,6 +5,7 @@ import Music from "../Music/Music";
 import News from "../News/News";
 import Profile from "../Profile/Profile";
 import Settings from "../Settings/Settings";
+import UsersContainer from "../Users/UsersContainer";
 import style from "./Content.module.css";
 
 const Content = (props) => {
@@ -20,6 +21,12 @@ const Content = (props) => {
         path="/dialogs"
         render={(el) => (
           <DialogsContainer />
+        )}
+      />
+      <Route
+        path="/users"
+        render={(el) => (
+          <UsersContainer />
         )}
       />
       <Route path="/news" component={News} />

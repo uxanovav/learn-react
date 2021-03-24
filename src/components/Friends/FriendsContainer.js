@@ -1,12 +1,12 @@
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 import Friends from "./Friends";
 
-let MapStateToProps = (state) => {
-    return {
-        friendsData: state.friendsReducer.friendsData
-    }
-}
+const MapStateToProps = (state) => {
+  return {
+    userData: state.usersReducer.usersData.filter((user) => user.followed),
+  };
+};
 
 const FriendsContainer = connect(MapStateToProps)(Friends);
 
