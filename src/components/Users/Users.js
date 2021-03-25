@@ -1,22 +1,39 @@
 import React from "react";
 import User from "./User/User";
+import * as axios from "axios";
 
-const Users = ({ usersData, userFollowing }) => {
-  debugger;
-  let usersArr = usersData.map((user) => {
+class Users extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    axios
+      .get("https://social-network.samuraijs.com/api/1.0/users?count=10")
+      .then((response) => {
+        this.props.setUsers(response.data.items);
+      });
+  }
+
+  render() {
     return (
-      <User
-        name={user.name}
-        avatar={user.avatar}
-        followed={user.followed}
-        location={user.location}
-        userFollowing={userFollowing}
-        id={user.id}
-      />
+      <div>
+        <div>
+          {this.props.usersData.map((user) => {
+            return (
+              <User
+                name={user.name}
+                followed={user.followed}
+                userFollowing={this.props.userFollowing}
+                userUnFollowing={this.props.userUnFollowing}
+                id={user.id}
+                avatar={user.photos.small}
+              />
+            );
+          })}
+        </div>
+      </div>
     );
-  });
-
-  return <div>{usersArr}</div>;
-};
+  }
+}
 
 export default Users;
