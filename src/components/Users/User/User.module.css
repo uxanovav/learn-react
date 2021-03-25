@@ -1,9 +1,14 @@
 .userboard {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   margin-top: 10px;
   background-color: aliceblue;
+  transition: background-color 0.5s linear;
+}
+
+.userboard:hover {
+  background-color: rgb(201, 229, 253);
 }
 
 .userboard img {
@@ -21,4 +26,5 @@
   width: 50px;
   font-size: x-large;
   font-weight: bolder;
+  cursor: pointer;
 }
