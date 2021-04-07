@@ -3,58 +3,11 @@ const UPDATE_CURRENT_TEXT = "UPDATE-CURRENT-TEXT";
 const ADD_LIKE = "ADD_LIKE";
 const DELETE_POST = "DELETE-POST";
 const SET_PROFILE = "SET-PROFILE";
-const SET_IS_FETCHING = "SET-IS-FETCHING";
 
 let initialState = {
   profileData: {},
   isFetching: false,
-  postsData: [
-    // {
-    //   id: 7,
-    //   message: "Qui ut irure laboris cupidatat deserunt ea.",
-    //   likecount: 21,
-    //   liked: false,
-    // },
-    // {
-    //   id: 6,
-    //   message: "Nostrud consequat elit ullamco fugiat exercitation officia.",
-    //   likecount: 2,
-    //   liked: false,
-    // },
-    // {
-    //   id: 5,
-    //   message:
-    //     "Commodo dolor cupidatat id ex non nulla do deserunt in cupidatat enim laboris ad sit.",
-    //   likecount: 5,
-    //   liked: true,
-    // },
-    // {
-    //   id: 4,
-    //   message: "Do id excepteur pariatur voluptate reprehenderit eu culpa ex.",
-    //   likecount: 6,
-    //   liked: true,
-    // },
-    // {
-    //   id: 3,
-    //   message: "Duis cupidatat proident irure cupidatat.",
-    //   likecount: 7,
-    //   liked: true,
-    // },
-    // {
-    //   id: 2,
-    //   message:
-    //     "Minim occaecat dolore ad consectetur voluptate ex aliquip incididunt ullamco.",
-    //   likecount: 12,
-    //   liked: false,
-    // },
-    // {
-    //   id: 1,
-    //   message:
-    //     "Sint non aute sit dolore ea dolore anim anim et exercitation laborum anim.",
-    //   likecount: 55,
-    //   liked: true,
-    // },
-  ],
+  postsData: [],
   currentPostText: "",
 };
 
@@ -133,11 +86,4 @@ export const deletePostActionCreator = (id) => {
 
 export const setProfileActionCreator = (profileData) => {
   return { type: SET_PROFILE, profileData: profileData };
-};
-
-export const setIsFetchingActionCreator = (isFetching) => {
-  return {
-    type: SET_IS_FETCHING,
-    isFetching: isFetching,
-  };
 };
