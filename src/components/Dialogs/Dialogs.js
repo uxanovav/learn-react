@@ -3,7 +3,13 @@ import DialogItem from "./DialogItem/DialogItem";
 import style from "./Dialogs.module.css";
 import MessageItem from "./MessageList/MessageItemt";
 
-const Dialogs = ({addMessage,currentMessageText,updateMessageText,dialogsData,messagesData}) => {
+const Dialogs = ({
+  addMessage,
+  currentMessageText,
+  updateMessageText,
+  dialogsData,
+  messagesData,
+}) => {
   console.log(currentMessageText);
   let dialogsArr = dialogsData.map((dialog) => (
     <DialogItem name={dialog.name} id={dialog.id} />
@@ -12,16 +18,18 @@ const Dialogs = ({addMessage,currentMessageText,updateMessageText,dialogsData,me
     <MessageItem message={message.message} sender={message.sender} />
   ));
 
-let newMessage = React.createRef();
+  let newMessage = React.createRef();
 
-let onAdd = () => {
-  addMessage();
-}
+  let onAdd = () => {
+    if (currentMessageText != "") {
+      addMessage();
+    }
+  };
 
-let onUpdate = () => {
-  let text = newMessage.current.value;
-  updateMessageText(text);
-}
+  let onUpdate = () => {
+    let text = newMessage.current.value;
+    updateMessageText(text);
+  };
 
   return (
     <div className={style.dialogs}>
@@ -29,11 +37,14 @@ let onUpdate = () => {
       <div className={style.messageList}>
         <div>{messagesArr}</div>
         <div className={style.submitPanel}>
-          <textarea ref={newMessage} onChange={onUpdate} value={currentMessageText}/>
+          <textarea
+            ref={newMessage}
+            onChange={onUpdate}
+            value={currentMessageText}
+          />
           <button onClick={onAdd}>Submit</button>
         </div>
       </div>
-
     </div>
   );
 };

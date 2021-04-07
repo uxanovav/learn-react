@@ -11,7 +11,9 @@ const MyPosts = ({
   deletePost,
 }) => {
   let onAdd = () => {
-    addPost();
+    if (currentPostText != "") {
+      addPost();
+    }
   };
 
   let onUpdate = () => {
