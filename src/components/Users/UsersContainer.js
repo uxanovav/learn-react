@@ -11,64 +11,91 @@ import React from "react";
 import axios from "axios";
 import preloader from "../../assets/images/preloader.gif";
 import style from "./Users.module.css";
+import { useEffect } from "react";
 
-class UsersContainerClass extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const UsersContainerC = ({
+  setIsFetching,
+  currentPage,
+  totalCount,
+  setPage,
+  usersData,
+  userFollowing,
+  userUnFollowing,
+  setUsers,
+  isFetching,
+}) => {
+  debugger;
 
-  componentDidMount() {
-    this.props.setIsFetching(true);
+  useEffect(() => {
+    setIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=50`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=50`
       )
       .then((response) => {
-        this.props.setUsers({
+        setUsers({
           users: response.data.items,
           totalCount: response.data.totalCount,
         });
-        this.props.setIsFetching(false);
+        setIsFetching(false);
       });
-  }
+  }, []);
 
-  getNewUsers = (pageNumber) => {
-    this.props.setIsFetching(true);
-    this.props.setPage(pageNumber);
+  const getNewUsers = (pageNumber) => {
+    setIsFetching(true);
+    setPage(pageNumber);
     axios
       .get(
         `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=50`
       )
       .then((response) => {
-        this.props.setUsers({
+        setUsers({
           users: response.data.items,
           totalCount: response.data.totalCount,
         });
-        this.props.setIsFetching(false);
+        setIsFetching(false);
       });
   };
 
-  render() {
+  const renderUsers = (
+    currentPage,
+    totalCount,
+    usersData,
+    userFollowing,
+    userUnFollowing,
+    getNewUsers,
+    isFetching
+  ) => {
     return (
       <>
-        {this.props.isFetching ? (
+        {isFetching ? (
           <div className={style.preloaderbox}>
             <img src={preloader} alt="preloader" />
           </div>
         ) : (
           <Users
-            currentPage={this.props.currentPage}
-            totalCount={this.props.totalCount}
-            usersData={this.props.usersData}
-            userFollowing={this.props.userFollowing}
-            userUnFollowing={this.props.userUnFollowing}
-            getNewUsers={this.getNewUsers}
+            currentPage={currentPage}
+            totalCount={totalCount}
+            usersData={usersData}
+            userFollowing={userFollowing}
+            userUnFollowing={userUnFollowing}
+            getNewUsers={getNewUsers}
           />
         )}
       </>
     );
-  }
-}
+  };
+
+  return renderUsers(
+    currentPage,
+    totalCount,
+    usersData,
+    userFollowing,
+    userUnFollowing,
+    getNewUsers,
+    isFetching
+  );
+};
 
 const MapStateToProps = (state) => {
   return {
@@ -102,6 +129,6 @@ const MapDispatchToProps = (dispatch) => {
 const UsersContainer = connect(
   MapStateToProps,
   MapDispatchToProps
-)(UsersContainerClass);
+)(UsersContainerC);
 
 export default UsersContainer;

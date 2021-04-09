@@ -1,29 +1,23 @@
 import { connect } from "react-redux";
-import React from "react";
-import {
-  setIsFetchingActionCreator,
-  setProfileActionCreator,
-} from "../../Redux/profile-reducer";
+import React, { useEffect } from "react";
+import { setProfileActionCreator } from "../../Redux/profile-reducer";
 import axios from "axios";
 import Profile from "./Profile";
 
-class ProfileContainerClass extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
+const ProfileContainerC = ({ setProfile, profileData }) => {
+  const renderProfile = (profileData) => {
+    return <Profile profileData={profileData} />;
+  };
+  useEffect(() => {
     axios
       .get(`https://social-network.samuraijs.com/api/1.0/profile/16209`)
       .then((response) => {
-        this.props.setProfile(response.data);
+        setProfile(response.data);
       });
-  }
+  }, []);
 
-  render() {
-    return <Profile profileData={this.props.profileData} />;
-  }
-}
+  return renderProfile(profileData);
+};
 
 const MapStateToProps = (state) => {
   return {
@@ -42,6 +36,6 @@ const MapDispatchToProps = (dispatch) => {
 const ProfileContainer = connect(
   MapStateToProps,
   MapDispatchToProps
-)(ProfileContainerClass);
+)(ProfileContainerC);
 
 export default ProfileContainer;
