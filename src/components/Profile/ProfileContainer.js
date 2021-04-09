@@ -3,14 +3,18 @@ import React, { useEffect } from "react";
 import { setProfileActionCreator } from "../../Redux/profile-reducer";
 import axios from "axios";
 import Profile from "./Profile";
+import { withRouter } from "react-router";
 
-const ProfileContainerC = ({ setProfile, profileData }) => {
+const ProfileContainer = ({ setProfile, profileData, match }) => {
+  debugger;
   const renderProfile = (profileData) => {
     return <Profile profileData={profileData} />;
   };
   useEffect(() => {
     axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/16209`)
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/profile/${match.params.userId}`
+      )
       .then((response) => {
         setProfile(response.data);
       });
@@ -33,9 +37,6 @@ const MapDispatchToProps = (dispatch) => {
   };
 };
 
-const ProfileContainer = connect(
-  MapStateToProps,
-  MapDispatchToProps
-)(ProfileContainerC);
+let urlData = withRouter(ProfileContainer);
 
-export default ProfileContainer;
+export default connect(MapStateToProps, MapDispatchToProps)(urlData);

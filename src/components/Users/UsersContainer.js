@@ -24,13 +24,11 @@ const UsersContainerC = ({
   setUsers,
   isFetching,
 }) => {
-  debugger;
-
   useEffect(() => {
     setIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=50`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=10`
       )
       .then((response) => {
         setUsers({
@@ -46,7 +44,7 @@ const UsersContainerC = ({
     setPage(pageNumber);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=50`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=10`
       )
       .then((response) => {
         setUsers({

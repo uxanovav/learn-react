@@ -12,7 +12,7 @@ const User = ({
 }) => {
   return (
     <div className={style.userboard}>
-      <NavLink to={"profile/16209"}>
+      <NavLink to={"profile/" + id}>
         {avatar === null ? (
           <img
             src={

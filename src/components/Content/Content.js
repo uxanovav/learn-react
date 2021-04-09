@@ -11,7 +11,7 @@ import style from "./Content.module.css";
 const Content = (props) => {
   return (
     <div className={style.main_content}>
-      <Route path="/profile/16209" render={(el) => <ProfileContainer />} />
+      <Route path="/profile/:userId" render={(el) => <ProfileContainer />} />
       <Route path="/dialogs" render={(el) => <DialogsContainer />} />
       <Route path="/users" render={(el) => <UsersContainer />} />
       <Route path="/news" component={News} />
