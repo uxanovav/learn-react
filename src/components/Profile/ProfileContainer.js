@@ -4,19 +4,16 @@ import { setProfileActionCreator } from "../../Redux/profile-reducer";
 import axios from "axios";
 import Profile from "./Profile";
 import { withRouter } from "react-router";
+import { profileAPI } from "../../api/api";
 
 const ProfileContainer = ({ setProfile, profileData, match }) => {
   const renderProfile = (profileData) => {
     return <Profile profileData={profileData} />;
   };
   useEffect(() => {
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/profile/${match.params.userId}`
-      )
-      .then((response) => {
-        setProfile(response.data);
-      });
+    profileAPI.getProfile(match.params.userId).then((response) => {
+      setProfile(response.data);
+    });
   }, []);
 
   return renderProfile(profileData);

@@ -12,6 +12,7 @@ import axios from "axios";
 import preloader from "../../assets/images/preloader.gif";
 import style from "./Users.module.css";
 import { useEffect } from "react";
+import { userAPI } from "../../api/api";
 
 const UsersContainerC = ({
   setIsFetching,
@@ -26,81 +27,41 @@ const UsersContainerC = ({
 }) => {
   useEffect(() => {
     setIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=10`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((response) => {
-        setUsers({
-          users: response.data.items,
-          totalCount: response.data.totalCount,
-        });
-        setIsFetching(false);
+    userAPI.getUsers(currentPage).then((response) => {
+      setUsers({
+        users: response.data.items,
+        totalCount: response.data.totalCount,
       });
+      setIsFetching(false);
+    });
   }, []);
 
   const getNewUsers = (pageNumber) => {
     setIsFetching(true);
     setPage(pageNumber);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=10`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((response) => {
-        setUsers({
-          users: response.data.items,
-          totalCount: response.data.totalCount,
-        });
-        setIsFetching(false);
+    userAPI.getNewUsersPage(pageNumber).then((response) => {
+      setUsers({
+        users: response.data.items,
+        totalCount: response.data.totalCount,
       });
+      setIsFetching(false);
+    });
   };
 
   const followUser = (id) => {
-    debugger;
-    axios
-      .post(
-        `https://social-network.samuraijs.com/api/1.0/follow/${id}`,
-        {},
-        {
-          withCredentials: true,
-          headers: {
-            "API-KEY": "56bec76a-9b79-49cd-8a34-0e02c235c1d9",
-          },
-        }
-      )
-      .then((response) => {
-        debugger;
-        if (response.data.resultCode == 0) {
-          userFollowing(id);
-        }
-      });
+    userAPI.setFollow(id).then((response) => {
+      if (response.data.resultCode == 0) {
+        userFollowing(id);
+      }
+    });
   };
 
   const unfollowUser = (id) => {
-    debugger;
-    axios
-      .delete(
-        `https://social-network.samuraijs.com/api/1.0/follow/${id}`,
-        {
-          withCredentials: true,
-          headers: {
-            "API-KEY": "56bec76a-9b79-49cd-8a34-0e02c235c1d9",
-          },
-        },
-        {}
-      )
-      .then((response) => {
-        debugger;
-        if (response.data.resultCode == 0) {
-          userUnFollowing(id);
-        }
-      });
+    userAPI.unsetFollow(id).then((response) => {
+      if (response.data.resultCode == 0) {
+        userUnFollowing(id);
+      }
+    });
   };
 
   const renderUsers = (

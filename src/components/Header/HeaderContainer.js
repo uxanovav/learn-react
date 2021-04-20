@@ -3,18 +3,14 @@ import { connect } from "react-redux";
 import { setAuthActionCreator } from "../../Redux/auth-reducer";
 import Header from "./Header";
 import axios from "axios";
+import { authAPI } from "../../api/api";
 
 const HeaderContaner = ({ setAuth, login, isAuth }) => {
   useEffect(() => {
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        if (response.data.data) {
-          setAuth(response.data.data);
-        }
-      });
+    const authData = authAPI.getAuth().then((response) => {
+      debugger;
+      setAuth(response.data.data);
+    });
   }, []);
   return <Header login={login} isAuth={isAuth} />;
 };

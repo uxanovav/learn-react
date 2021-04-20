@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import style from "./Friend.module.css";
 
 const Friend = ({ id, name, avatar }) => {
+  debugger;
   return (
     <NavLink to={"profile/" + id}>
       <div className={style.friend} id={id}>
