@@ -28,7 +28,10 @@ const UsersContainerC = ({
     setIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=10`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=10`,
+        {
+          withCredentials: true,
+        }
       )
       .then((response) => {
         setUsers({
@@ -44,7 +47,10 @@ const UsersContainerC = ({
     setPage(pageNumber);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=10`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=10`,
+        {
+          withCredentials: true,
+        }
       )
       .then((response) => {
         setUsers({
@@ -55,12 +61,54 @@ const UsersContainerC = ({
       });
   };
 
+  const followUser = (id) => {
+    debugger;
+    axios
+      .post(
+        `https://social-network.samuraijs.com/api/1.0/follow/${id}`,
+        {},
+        {
+          withCredentials: true,
+          headers: {
+            "API-KEY": "56bec76a-9b79-49cd-8a34-0e02c235c1d9",
+          },
+        }
+      )
+      .then((response) => {
+        debugger;
+        if (response.data.resultCode == 0) {
+          userFollowing(id);
+        }
+      });
+  };
+
+  const unfollowUser = (id) => {
+    debugger;
+    axios
+      .delete(
+        `https://social-network.samuraijs.com/api/1.0/follow/${id}`,
+        {
+          withCredentials: true,
+          headers: {
+            "API-KEY": "56bec76a-9b79-49cd-8a34-0e02c235c1d9",
+          },
+        },
+        {}
+      )
+      .then((response) => {
+        debugger;
+        if (response.data.resultCode == 0) {
+          userUnFollowing(id);
+        }
+      });
+  };
+
   const renderUsers = (
     currentPage,
     totalCount,
     usersData,
-    userFollowing,
-    userUnFollowing,
+    followUser,
+    unfollowUser,
     getNewUsers,
     isFetching
   ) => {
@@ -75,8 +123,8 @@ const UsersContainerC = ({
             currentPage={currentPage}
             totalCount={totalCount}
             usersData={usersData}
-            userFollowing={userFollowing}
-            userUnFollowing={userUnFollowing}
+            followUser={followUser}
+            unfollowUser={unfollowUser}
             getNewUsers={getNewUsers}
           />
         )}
@@ -88,8 +136,8 @@ const UsersContainerC = ({
     currentPage,
     totalCount,
     usersData,
-    userFollowing,
-    userUnFollowing,
+    followUser,
+    unfollowUser,
     getNewUsers,
     isFetching
   );

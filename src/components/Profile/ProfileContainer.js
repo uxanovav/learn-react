@@ -6,7 +6,6 @@ import Profile from "./Profile";
 import { withRouter } from "react-router";
 
 const ProfileContainer = ({ setProfile, profileData, match }) => {
-  debugger;
   const renderProfile = (profileData) => {
     return <Profile profileData={profileData} />;
   };

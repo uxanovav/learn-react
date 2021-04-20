@@ -28,10 +28,11 @@ const Users = (props) => {
         {props.usersData.map((user) => {
           return (
             <User
+              key={user.id}
               name={user.name}
               followed={user.followed}
-              userFollowing={props.userFollowing}
-              userUnFollowing={props.userUnFollowing}
+              followUser={props.followUser}
+              unfollowUser={props.unfollowUser}
               id={user.id}
               avatar={user.photos.small}
             />
