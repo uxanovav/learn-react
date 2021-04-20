@@ -2,7 +2,7 @@ import store from "./Redux/redux-store";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App/App";
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 
 export const rerender = () => {
   ReactDOM.render(
@@ -12,6 +12,8 @@ export const rerender = () => {
     document.getElementById("root")
   );
 };
+
+window.store = store;
 
 rerender();
 

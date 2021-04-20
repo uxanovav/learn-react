@@ -5,19 +5,18 @@ let initialState = {
     id: null,
     login: null,
     email: null,
-    isAuth: false,
   },
+  isAuth: false,
 };
 
 export default function authReducer(state = initialState, action) {
-  debugger;
   switch (action.type) {
     case SET_AUTH:
       return {
         ...state,
-        ...action.authData,
+        authData: action.authData,
+        isAuth: true,
       };
-
     default: {
       return state;
     }

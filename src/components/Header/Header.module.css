@@ -1,16 +1,19 @@
 header img {
-    height: 80px;
-    margin: 10px;
+  height: 80px;
+  margin: 10px;
 }
 
 header {
-    display: flex;
-    grid-area: header;
-    background-color: rgb(48, 160, 180);
-    color: beige;
-    height: 100px;
+  display: flex;
+  grid-area: header;
+  background-color: rgb(48, 160, 180);
+  color: beige;
+  height: 100px;
 }
 header h1 {
-    text-shadow: 1px 1px 2px black, 0 0 1em grey;
+  text-shadow: 1px 1px 2px black, 0 0 1em grey;
 }
 
+.welcome {
+  margin-left: 50%;
+}

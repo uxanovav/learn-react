@@ -1,8 +1,7 @@
 import React from "react";
 import style from "./Header.module.css";
 
-const Header = (props) => {
-  debugger;
+const Header = ({ login, isAuth }) => {
   return (
     <header className={style.header}>
       <img
@@ -10,11 +9,9 @@ const Header = (props) => {
         alt="logo"
       />
       <h1>TRAINING SOCIAL-NETWORK</h1>
-      {props.authData.isAuth ? (
-        <h3>Welcome, {props.authData.login}</h3>
-      ) : (
-        <h3>LOGIN</h3>
-      )}
+      <div className={style.welcome}>
+        {isAuth ? <h1>Welcome, {login}</h1> : <h1>LOGIN</h1>}
+      </div>
     </header>
   );
 };
