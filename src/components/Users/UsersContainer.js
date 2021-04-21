@@ -6,9 +6,9 @@ import {
   userUnFollowActionCreator,
   setCurrentPageActionCreator,
   setIsFetchingActionCreator,
+  setFollowingActionCreator,
 } from "../../Redux/users-reducer";
 import React from "react";
-import axios from "axios";
 import preloader from "../../assets/images/preloader.gif";
 import style from "./Users.module.css";
 import { useEffect } from "react";
@@ -24,6 +24,8 @@ const UsersContainerC = ({
   userUnFollowing,
   setUsers,
   isFetching,
+  setIsFollowing,
+  isFollowing,
 }) => {
   useEffect(() => {
     setIsFetching(true);
@@ -49,18 +51,22 @@ const UsersContainerC = ({
   };
 
   const followUser = (id) => {
+    setIsFollowing(true, id);
     userAPI.setFollow(id).then((response) => {
       if (response.data.resultCode == 0) {
         userFollowing(id);
       }
+      setIsFollowing(false, id);
     });
   };
 
   const unfollowUser = (id) => {
+    setIsFollowing(true, id);
     userAPI.unsetFollow(id).then((response) => {
       if (response.data.resultCode == 0) {
         userUnFollowing(id);
       }
+      setIsFollowing(false, id);
     });
   };
 
@@ -71,7 +77,8 @@ const UsersContainerC = ({
     followUser,
     unfollowUser,
     getNewUsers,
-    isFetching
+    isFetching,
+    isFollowing
   ) => {
     return (
       <>
@@ -87,6 +94,7 @@ const UsersContainerC = ({
             followUser={followUser}
             unfollowUser={unfollowUser}
             getNewUsers={getNewUsers}
+            isFollowing={isFollowing}
           />
         )}
       </>
@@ -100,7 +108,8 @@ const UsersContainerC = ({
     followUser,
     unfollowUser,
     getNewUsers,
-    isFetching
+    isFetching,
+    isFollowing
   );
 };
 
@@ -110,6 +119,7 @@ const MapStateToProps = (state) => {
     totalCount: state.usersReducer.totalCount,
     currentPage: state.usersReducer.currentPage,
     isFetching: state.usersReducer.isFetching,
+    isFollowing: state.usersReducer.isFollowing,
   };
 };
 
@@ -129,6 +139,9 @@ const MapDispatchToProps = (dispatch) => {
     },
     setIsFetching: (isFetching) => {
       return dispatch(setIsFetchingActionCreator(isFetching));
+    },
+    setIsFollowing: (isFetching, id) => {
+      return dispatch(setFollowingActionCreator(isFetching, id));
     },
   };
 };

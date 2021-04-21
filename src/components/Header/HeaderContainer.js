@@ -8,7 +8,6 @@ import { authAPI } from "../../api/api";
 const HeaderContaner = ({ setAuth, login, isAuth }) => {
   useEffect(() => {
     const authData = authAPI.getAuth().then((response) => {
-      debugger;
       setAuth(response.data.data);
     });
   }, []);

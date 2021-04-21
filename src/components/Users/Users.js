@@ -35,6 +35,7 @@ const Users = (props) => {
               unfollowUser={props.unfollowUser}
               id={user.id}
               avatar={user.photos.small}
+              isFollowing={props.isFollowing}
             />
           );
         })}

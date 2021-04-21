@@ -3,17 +3,19 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_IS_FETCHING = "SET-IS-FETCHING";
+const SET_IS_FOLLOWING = "SET-IS-FOLLOWING";
 
 let initialState = {
   usersData: [],
   totalCount: "",
   currentPage: 1,
   isFetching: false,
+  isFollowing: [],
 };
 
 export default function usersReducer(
   state = initialState,
-  { type, id, users, totalCountOfUsers, currentPage, isFetching }
+  { type, id, users, totalCountOfUsers, currentPage, isFetching, userId }
 ) {
   switch (type) {
     case FOLLOW: {
@@ -57,6 +59,14 @@ export default function usersReducer(
         isFetching: isFetching,
       };
     }
+    case SET_IS_FOLLOWING: {
+      return {
+        ...state,
+        isFollowing: isFetching
+          ? [...state.isFollowing, userId]
+          : state.isFollowing.filter((userId) => userId != userId),
+      };
+    }
     default:
       return state;
   }
@@ -89,5 +99,13 @@ export const setIsFetchingActionCreator = (isFetching) => {
   return {
     type: SET_IS_FETCHING,
     isFetching: isFetching,
+  };
+};
+
+export const setFollowingActionCreator = (isFetching, userId) => {
+  return {
+    type: SET_IS_FOLLOWING,
+    isFetching: isFetching,
+    userId: userId,
   };
 };

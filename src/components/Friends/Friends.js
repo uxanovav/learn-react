@@ -3,9 +3,14 @@ import Friend from "./Friend/Friend";
 import style from "./Friends.module.css";
 
 const Friends = (props) => {
-  let friendsArr =props.userData.map((friend) => (
-      <Friend id={friend.id} name={friend.name} avatar={friend.photos.small} />
-    ));
+  let friendsArr = props.userData.map((friend) => (
+    <Friend
+      key={friend.id}
+      id={friend.id}
+      name={friend.name}
+      avatar={friend.photos.small}
+    />
+  ));
 
   return (
     <div className={style.friendsPanel}>

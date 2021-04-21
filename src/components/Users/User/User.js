@@ -2,7 +2,15 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import style from "./User.module.css";
 
-const User = ({ name, followed, followUser, unfollowUser, id, avatar }) => {
+const User = ({
+  name,
+  followed,
+  followUser,
+  unfollowUser,
+  id,
+  avatar,
+  isFollowing,
+}) => {
   return (
     <div className={style.userboard}>
       <NavLink to={"profile/" + id}>
@@ -23,9 +31,19 @@ const User = ({ name, followed, followUser, unfollowUser, id, avatar }) => {
       <div>{/* <div>{location.city}</div>
         {location.country} */}</div>
       {followed ? (
-        <button onClick={() => unfollowUser(id)}>-</button>
+        <button
+          disabled={isFollowing.some((userId) => userId === id)}
+          onClick={() => unfollowUser(id)}
+        >
+          -
+        </button>
       ) : (
-        <button onClick={() => followUser(id)}>+</button>
+        <button
+          disabled={isFollowing.some((userId) => userId === id)}
+          onClick={() => followUser(id)}
+        >
+          +
+        </button>
       )}
     </div>
   );
