@@ -1,15 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { setAuthActionCreator } from "../../Redux/auth-reducer";
+import { authActions } from "../../Redux/actions";
 import Header from "./Header";
-import axios from "axios";
-import { authAPI } from "../../api/api";
 
-const HeaderContaner = ({ setAuth, login, isAuth }) => {
+const HeaderContaner = ({ fetchAuth, login, isAuth }) => {
   useEffect(() => {
-    const authData = authAPI.getAuth().then((response) => {
-      setAuth(response.data.data);
-    });
+    fetchAuth();
   }, []);
   return <Header login={login} isAuth={isAuth} />;
 };
@@ -21,12 +17,6 @@ const MapStateToProps = (state) => {
   };
 };
 
-const MapDispatchToProps = (dispatch) => {
-  return {
-    setAuth: (AuthData) => {
-      return dispatch(setAuthActionCreator(AuthData));
-    },
-  };
-};
+const fetchAuth = authActions.fetchAuth;
 
-export default connect(MapStateToProps, MapDispatchToProps)(HeaderContaner);
+export default connect(MapStateToProps, { fetchAuth })(HeaderContaner);

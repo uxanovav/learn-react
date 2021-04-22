@@ -17,8 +17,7 @@ const MyPosts = ({
   };
 
   let onUpdate = () => {
-    let text = newPost.current.value;
-    updatePostText(text);
+    updatePostText(newPost.current.value);
   };
 
   let postsArr = postsData.map((post) => (

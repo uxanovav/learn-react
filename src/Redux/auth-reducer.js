@@ -1,4 +1,4 @@
-const SET_AUTH = "SET-AUTH";
+import { SET_AUTH } from "./types";
 
 let initialState = {
   authData: {
@@ -22,7 +22,3 @@ export default function authReducer(state = initialState, action) {
     }
   }
 }
-
-export const setAuthActionCreator = (AuthData) => {
-  return { type: SET_AUTH, authData: AuthData };
-};

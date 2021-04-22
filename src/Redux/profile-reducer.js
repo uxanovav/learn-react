@@ -1,8 +1,10 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_CURRENT_TEXT = "UPDATE-CURRENT-TEXT";
-const ADD_LIKE = "ADD_LIKE";
-const DELETE_POST = "DELETE-POST";
-const SET_PROFILE = "SET-PROFILE";
+import {
+  ADD_POST,
+  UPDATE_CURRENT_TEXT,
+  ADD_LIKE,
+  DELETE_POST,
+  SET_PROFILE,
+} from "./types";
 
 let initialState = {
   profileData: {},
@@ -11,8 +13,11 @@ let initialState = {
   currentPostText: "",
 };
 
-export default function profileReducer(state = initialState, action) {
-  switch (action.type) {
+export default function profileReducer(
+  state = initialState,
+  { type, payload }
+) {
+  switch (type) {
     case ADD_POST: {
       let newPost = {
         id: state.postsData.length != 0 ? state.postsData[0].id + 1 : 0,
@@ -30,7 +35,7 @@ export default function profileReducer(state = initialState, action) {
     case UPDATE_CURRENT_TEXT: {
       return {
         ...state,
-        currentPostText: action.text,
+        currentPostText: payload,
       };
     }
 
@@ -38,7 +43,7 @@ export default function profileReducer(state = initialState, action) {
       return {
         ...state,
         postsData: state.postsData.map((post) => {
-          if (post.id === action.id) {
+          if (post.id === payload) {
             if (post.liked === false) {
               post.likecount++;
             } else {
@@ -53,13 +58,13 @@ export default function profileReducer(state = initialState, action) {
     case DELETE_POST: {
       return {
         ...state,
-        postsData: state.postsData.filter((post) => post.id != action.id),
+        postsData: state.postsData.filter((post) => post.id != payload),
       };
     }
     case SET_PROFILE: {
       return {
         ...state,
-        profileData: action.profileData,
+        profileData: payload,
       };
     }
     default: {
@@ -67,23 +72,3 @@ export default function profileReducer(state = initialState, action) {
     }
   }
 }
-
-export const addPostActionCreator = (text) => {
-  return { type: ADD_POST, newText: text };
-};
-
-export const updatePostTextActionCreator = (text) => {
-  return { type: UPDATE_CURRENT_TEXT, text: text };
-};
-
-export const addLikeActionCreator = (id) => {
-  return { type: ADD_LIKE, id: id };
-};
-
-export const deletePostActionCreator = (id) => {
-  return { type: DELETE_POST, id: id };
-};
-
-export const setProfileActionCreator = (profileData) => {
-  return { type: SET_PROFILE, profileData: profileData };
-};

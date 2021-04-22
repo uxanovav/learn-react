@@ -1,9 +1,11 @@
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = "UNFOLLOW";
-const SET_USERS = "SET-USERS";
-const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
-const SET_IS_FETCHING = "SET-IS-FETCHING";
-const SET_IS_FOLLOWING = "SET-IS-FOLLOWING";
+import {
+  FOLLOW,
+  UNFOLLOW,
+  SET_USERS,
+  SET_CURRENT_PAGE,
+  SET_IS_FETCHING,
+  SET_IS_FOLLOWING,
+} from "./types";
 
 let initialState = {
   usersData: [],

@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
-import { setProfileActionCreator } from "../../Redux/profile-reducer";
-import axios from "axios";
+import { profileActions } from "../../Redux/actions";
 import Profile from "./Profile";
 import { withRouter } from "react-router";
 import { profileAPI } from "../../api/api";
@@ -25,14 +24,8 @@ const MapStateToProps = (state) => {
   };
 };
 
-const MapDispatchToProps = (dispatch) => {
-  return {
-    setProfile: (profileData) => {
-      return dispatch(setProfileActionCreator(profileData));
-    },
-  };
-};
+const setProfile = profileActions.setProfile;
 
 let urlData = withRouter(ProfileContainer);
 
-export default connect(MapStateToProps, MapDispatchToProps)(urlData);
+export default connect(MapStateToProps, { setProfile })(urlData);
