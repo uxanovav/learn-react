@@ -11,6 +11,7 @@ const User = ({
   avatar,
   isFollowing,
 }) => {
+  debugger;
   return (
     <div className={style.userboard}>
       <NavLink to={"profile/" + id}>

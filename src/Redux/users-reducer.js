@@ -17,7 +17,16 @@ let initialState = {
 
 export default function usersReducer(
   state = initialState,
-  { type, id, users, totalCountOfUsers, currentPage, isFetching, userId }
+  {
+    type,
+    id,
+    users,
+    totalCountOfUsers,
+    currentPage,
+    isFetching,
+    userId,
+    isFollowing,
+  }
 ) {
   switch (type) {
     case FOLLOW: {
@@ -64,7 +73,7 @@ export default function usersReducer(
     case SET_IS_FOLLOWING: {
       return {
         ...state,
-        isFollowing: isFetching
+        isFollowing: isFollowing
           ? [...state.isFollowing, userId]
           : state.isFollowing.filter((userId) => userId != userId),
       };
@@ -73,41 +82,3 @@ export default function usersReducer(
       return state;
   }
 }
-
-export const userFollowActionCreator = (id) => {
-  return { type: FOLLOW, id: id };
-};
-
-export const userUnFollowActionCreator = (id) => {
-  return { type: UNFOLLOW, id: id };
-};
-
-export const setUsersActionCreator = (payload) => {
-  return {
-    type: SET_USERS,
-    users: payload.users,
-    totalCountOfUsers: payload.totalCount,
-  };
-};
-
-export const setCurrentPageActionCreator = (currentPage) => {
-  return {
-    type: SET_CURRENT_PAGE,
-    currentPage: currentPage,
-  };
-};
-
-export const setIsFetchingActionCreator = (isFetching) => {
-  return {
-    type: SET_IS_FETCHING,
-    isFetching: isFetching,
-  };
-};
-
-export const setFollowingActionCreator = (isFetching, userId) => {
-  return {
-    type: SET_IS_FOLLOWING,
-    isFetching: isFetching,
-    userId: userId,
-  };
-};
