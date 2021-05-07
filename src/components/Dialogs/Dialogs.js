@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router";
 import DialogItem from "./DialogItem/DialogItem";
 import style from "./Dialogs.module.css";
 import MessageItem from "./MessageList/MessageItemt";
@@ -9,8 +10,8 @@ const Dialogs = ({
   updateMessageText,
   dialogsData,
   messagesData,
+  isAuth,
 }) => {
-  console.log(currentMessageText);
   let dialogsArr = dialogsData.map((dialog) => (
     <DialogItem name={dialog.name} id={dialog.id} />
   ));
@@ -31,7 +32,7 @@ const Dialogs = ({
     updateMessageText(text);
   };
 
-  return (
+  return isAuth ? (
     <div className={style.dialogs}>
       <div className={style.dialogList}>{dialogsArr}</div>
       <div className={style.messageList}>
@@ -46,6 +47,8 @@ const Dialogs = ({
         </div>
       </div>
     </div>
+  ) : (
+    <Redirect to="/login" />
   );
 };
 

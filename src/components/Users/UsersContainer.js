@@ -6,6 +6,7 @@ import preloader from "../../assets/images/preloader.gif";
 import style from "./Users.module.css";
 import { useEffect } from "react";
 import { userAPI } from "../../api/api";
+import { Redirect } from "react-router";
 
 const UsersContainerC = ({
   userFollowing,
@@ -17,6 +18,7 @@ const UsersContainerC = ({
   usersData,
   isFetching,
   isFollowing,
+  isAuth,
 }) => {
   useEffect(() => {
     setUsers(currentPage);
@@ -30,9 +32,10 @@ const UsersContainerC = ({
     userUnFollowing,
     getNewUsers,
     isFetching,
-    isFollowing
+    isFollowing,
+    isAuth
   ) => {
-    return (
+    return isAuth ? (
       <>
         {isFetching ? (
           <div className={style.preloaderbox}>
@@ -50,6 +53,8 @@ const UsersContainerC = ({
           />
         )}
       </>
+    ) : (
+      <Redirect to="/login" />
     );
   };
 
@@ -61,7 +66,8 @@ const UsersContainerC = ({
     userUnFollowing,
     getNewUsers,
     isFetching,
-    isFollowing
+    isFollowing,
+    isAuth
   );
 };
 
@@ -72,6 +78,7 @@ const MapStateToProps = (state) => {
     currentPage: state.usersReducer.currentPage,
     isFetching: state.usersReducer.isFetching,
     isFollowing: state.usersReducer.isFollowing,
+    isAuth: state.authReducer.isAuth,
   };
 };
 

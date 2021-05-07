@@ -100,7 +100,9 @@ export const authActions = {
   fetchAuth: () => {
     return (dispatch) => {
       authAPI.getAuth().then((response) => {
-        dispatch({ type: SET_AUTH, authData: response.data.data });
+        if (response.data.resultCode === 0) {
+          dispatch({ type: SET_AUTH, authData: response.data.data });
+        }
       });
     };
   },
