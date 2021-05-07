@@ -4,9 +4,9 @@ import Users from "./Users";
 import React from "react";
 import preloader from "../../assets/images/preloader.gif";
 import style from "./Users.module.css";
+import RedirectWithoutAuth from "../hoc/RedirectWithoutAuth";
 import { useEffect } from "react";
-import { userAPI } from "../../api/api";
-import { Redirect } from "react-router";
+import { compose } from "redux";
 
 const UsersContainerC = ({
   userFollowing,
@@ -32,10 +32,9 @@ const UsersContainerC = ({
     userUnFollowing,
     getNewUsers,
     isFetching,
-    isFollowing,
-    isAuth
+    isFollowing
   ) => {
-    return isAuth ? (
+    return (
       <>
         {isFetching ? (
           <div className={style.preloaderbox}>
@@ -53,8 +52,6 @@ const UsersContainerC = ({
           />
         )}
       </>
-    ) : (
-      <Redirect to="/login" />
     );
   };
 
@@ -87,11 +84,13 @@ const userUnFollowing = usersActions.userUnFollowing;
 const setUsers = usersActions.setUsers;
 const getNewUsers = usersActions.getNewUsers;
 
+const AuthRedirectComponent = RedirectWithoutAuth(UsersContainerC);
+
 const UsersContainer = connect(MapStateToProps, {
   userFollowing,
   userUnFollowing,
   setUsers,
   getNewUsers,
-})(UsersContainerC);
+})(AuthRedirectComponent);
 
 export default UsersContainer;
