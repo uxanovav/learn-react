@@ -4,8 +4,13 @@ import style from "./Profile.module.css";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import preloader from "../../assets/images/preloader.gif";
 
-const Profile = ({ profileData, profileStatus, isFetching }) => {
-  debugger;
+const Profile = ({
+  profileData,
+  profileStatus,
+  isFetching,
+  setStatus,
+  isMyPage,
+}) => {
   if (isFetching || !profileData.photos) {
     return (
       <div className={style.preloaderbox}>
@@ -22,6 +27,8 @@ const Profile = ({ profileData, profileStatus, isFetching }) => {
           name={profileData.fullName}
           avatar={profileData.photos}
           profileStatus={profileStatus}
+          setStatus={setStatus}
+          isMyPage={isMyPage}
         />
         <MyPostsContainer />
       </div>

@@ -2,8 +2,7 @@ import React from "react";
 import style from "./Description.module.css";
 import ProfileStatus from "./ProfileStatus";
 
-const Description = ({ avatar, name, profileStatus }) => {
-  debugger;
+const Description = ({ avatar, name, profileStatus, setStatus, isMyPage }) => {
   return (
     <div className={style.description}>
       <>
@@ -18,7 +17,11 @@ const Description = ({ avatar, name, profileStatus }) => {
       </>
       <div className="textContent">
         <h1>{name}</h1>
-        <ProfileStatus profileStatus={profileStatus} />
+        <ProfileStatus
+          profileStatus={profileStatus}
+          setStatus={setStatus}
+          isMyPage={isMyPage}
+        />
         <div>
           Anim veniam voluptate ea sint labore et consectetur cillum non labore
           consectetur est non.

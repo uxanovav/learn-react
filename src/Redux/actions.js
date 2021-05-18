@@ -14,6 +14,7 @@ import {
   SET_IS_FETCHING,
   SET_IS_FOLLOWING,
   GET_STATUS,
+  SET_STATUS,
 } from "./types";
 
 import { authAPI, profileAPI, userAPI } from "../api/api";
@@ -88,10 +89,18 @@ export const profileActions = {
       dispatch({ type: SET_IS_FETCHING, isFetching: true });
       profileAPI.getProfile(id).then((response) => {
         dispatch({ type: SET_PROFILE, payload: response.data });
-        dispatch({ type: SET_IS_FETCHING, isFetching: false });
       });
       profileAPI.getStatus(id).then((response) => {
         dispatch({ type: GET_STATUS, payload: response.data });
+        dispatch({ type: SET_IS_FETCHING, isFetching: false });
+      });
+    };
+  },
+  setStatus: (status) => {
+    return (dispatch) => {
+      dispatch({ type: SET_STATUS, payload: status });
+      profileAPI.setStatus(status).then((response) => {
+        console.log(response);
       });
     };
   },

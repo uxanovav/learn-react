@@ -5,7 +5,7 @@ import {
   DELETE_POST,
   SET_PROFILE,
   GET_STATUS,
-  SET_IS_FETCHING,
+  SET_STATUS,
 } from "./types";
 
 let initialState = {
@@ -13,11 +13,12 @@ let initialState = {
   postsData: [],
   currentPostText: "",
   status: "default",
+  myStatus: "",
 };
 
 export default function profileReducer(
   state = initialState,
-  { type, payload, isFetching }
+  { type, payload }
 ) {
   switch (type) {
     case ADD_POST: {
@@ -73,6 +74,12 @@ export default function profileReducer(
       return {
         ...state,
         status: payload,
+      };
+    }
+    case SET_STATUS: {
+      return {
+        ...state,
+        myStatus: payload,
       };
     }
     default: {

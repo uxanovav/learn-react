@@ -2,32 +2,35 @@ import { connect } from "react-redux";
 import React, { useEffect } from "react";
 import { profileActions } from "../../Redux/actions";
 import Profile from "./Profile";
-import { Redirect, withRouter } from "react-router";
-import { authAPI, profileAPI } from "../../api/api";
+import { withRouter } from "react-router";
 import RedirectWithoutAuth from "../hoc/RedirectWithoutAuth";
 
 const ProfileContainer = ({
   setProfile,
-  isAuth,
+  setStatus,
   isFetching,
   profileData,
   match,
   authId,
   profileStatus,
 }) => {
-  const renderProfile = (profileData, profileStatus, isFetching) => {
+  const isMyPage = authId === profileData.userId;
+
+  const renderProfile = (profileData, profileStatus, isFetching, setStatus) => {
     return (
       <Profile
         profileData={profileData}
         profileStatus={profileStatus}
         isFetching={isFetching}
+        setStatus={setStatus}
+        isMyPage={isMyPage}
       />
     );
   };
   useEffect(() => {
     match.path === "/me" ? setProfile(authId) : setProfile(match.params.userId);
   }, []);
-  return renderProfile(profileData, profileStatus, isFetching);
+  return renderProfile(profileData, profileStatus, isFetching, setStatus);
 };
 
 const MapStateToProps = (state) => {
@@ -41,9 +44,10 @@ const MapStateToProps = (state) => {
 };
 
 const setProfile = profileActions.setProfile;
+const setStatus = profileActions.setStatus;
 
 const AuthRedirectComponent = RedirectWithoutAuth(ProfileContainer);
 
 let urlData = withRouter(AuthRedirectComponent);
 
-export default connect(MapStateToProps, { setProfile })(urlData);
+export default connect(MapStateToProps, { setProfile, setStatus })(urlData);

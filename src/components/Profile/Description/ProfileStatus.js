@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./Description.module.css";
 
-const ProfileStatus = ({ profileStatus }) => {
+const ProfileStatus = ({ profileStatus, setStatus, isMyPage }) => {
   const [status, setPrfileStatus] = useState(profileStatus);
   const [editMode, changeEditMode] = useState(false);
   return (
@@ -12,7 +12,7 @@ const ProfileStatus = ({ profileStatus }) => {
             changeEditMode(!editMode);
           }}
         >
-          {status}
+          {status ? status : "Введите свой статус"}
         </span>
       ) : (
         <>
@@ -23,6 +23,7 @@ const ProfileStatus = ({ profileStatus }) => {
             }}
             onBlur={() => {
               changeEditMode(!editMode);
+              setStatus(status);
             }}
           ></input>
         </>
