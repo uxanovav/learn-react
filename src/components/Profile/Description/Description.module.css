@@ -1,9 +1,12 @@
 .description {
-    display: flex;
+  display: flex;
 }
 
 .description img {
-    margin: 10px;
-    width: 150px;
-    border-radius: 50%;
+  margin: 10px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.profilestatus {
 }

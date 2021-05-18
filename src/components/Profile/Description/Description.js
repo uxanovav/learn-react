@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./Description.module.css";
+import ProfileStatus from "./ProfileStatus";
 
 const Description = (props) => {
   return (
@@ -16,6 +17,7 @@ const Description = (props) => {
       </>
       <div className="textContent">
         <h1>{props.name}</h1>
+        <ProfileStatus status={"My Status"} />
         <div>
           Anim veniam voluptate ea sint labore et consectetur cillum non labore
           consectetur est non.
