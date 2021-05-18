@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import style from "./Description.module.css";
 
-const ProfileStatus = ({ status }) => {
-  const [profileStatus, setPrfileStatus] = useState(status);
+const ProfileStatus = ({ profileStatus }) => {
+  const [status, setPrfileStatus] = useState(profileStatus);
   const [editMode, changeEditMode] = useState(false);
   return (
     <div className={style.profilestatus}>
@@ -12,12 +12,12 @@ const ProfileStatus = ({ status }) => {
             changeEditMode(!editMode);
           }}
         >
-          {profileStatus}
+          {status}
         </span>
       ) : (
         <>
           <input
-            value={profileStatus}
+            value={status}
             onChange={(e) => {
               setPrfileStatus(e.target.value);
             }}

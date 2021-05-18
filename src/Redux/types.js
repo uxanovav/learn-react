@@ -4,6 +4,7 @@ export const UPDATE_CURRENT_TEXT = "UPDATE-CURRENT-TEXT";
 export const ADD_LIKE = "ADD_LIKE";
 export const DELETE_POST = "DELETE-POST";
 export const SET_PROFILE = "SET-PROFILE";
+export const GET_STATUS = "GET-STATUS";
 
 //Dialogs ActionTypes
 export const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";

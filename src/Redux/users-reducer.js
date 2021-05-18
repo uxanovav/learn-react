@@ -22,7 +22,7 @@ export default function usersReducer(
     id,
     users,
     totalCountOfUsers,
-    currentPage,
+    pageNumber,
     isFetching,
     userId,
     isFollowing,
@@ -61,7 +61,7 @@ export default function usersReducer(
     case SET_CURRENT_PAGE: {
       return {
         ...state,
-        currentPage: currentPage,
+        currentPage: pageNumber,
       };
     }
     case SET_IS_FETCHING: {

@@ -2,12 +2,13 @@ import React from "react";
 import style from "./Description.module.css";
 import ProfileStatus from "./ProfileStatus";
 
-const Description = (props) => {
+const Description = ({ avatar, name, profileStatus }) => {
+  debugger;
   return (
     <div className={style.description}>
       <>
-        {props.avatar.large ? (
-          <img src={props.avatar.large} alt="avatar" />
+        {avatar.large ? (
+          <img src={avatar.large} alt="avatar" />
         ) : (
           <img
             src="http://losst.ru/wp-content/uploads/2016/08/LogoLosst.png"
@@ -16,8 +17,8 @@ const Description = (props) => {
         )}
       </>
       <div className="textContent">
-        <h1>{props.name}</h1>
-        <ProfileStatus status={"My Status"} />
+        <h1>{name}</h1>
+        <ProfileStatus profileStatus={profileStatus} />
         <div>
           Anim veniam voluptate ea sint labore et consectetur cillum non labore
           consectetur est non.

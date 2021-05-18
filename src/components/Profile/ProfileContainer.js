@@ -9,32 +9,34 @@ import RedirectWithoutAuth from "../hoc/RedirectWithoutAuth";
 const ProfileContainer = ({
   setProfile,
   isAuth,
+  isFetching,
   profileData,
   match,
   authId,
+  profileStatus,
 }) => {
-  const renderProfile = (profileData) => {
-    return <Profile profileData={profileData} />;
+  const renderProfile = (profileData, profileStatus, isFetching) => {
+    return (
+      <Profile
+        profileData={profileData}
+        profileStatus={profileStatus}
+        isFetching={isFetching}
+      />
+    );
   };
   useEffect(() => {
-    debugger;
-    match.path === "/me"
-      ? profileAPI.getProfile(authId).then((response) => {
-          setProfile(response.data);
-        })
-      : profileAPI.getProfile(match.params.userId).then((response) => {
-          setProfile(response.data);
-        });
+    match.path === "/me" ? setProfile(authId) : setProfile(match.params.userId);
   }, []);
-
-  return renderProfile(profileData, isAuth);
+  return renderProfile(profileData, profileStatus, isFetching);
 };
 
 const MapStateToProps = (state) => {
   return {
     profileData: state.profileReducer.profileData,
+    isFetching: state.usersReducer.isFetching,
     isAuth: state.authReducer.isAuth,
     authId: state.authReducer.authData.id,
+    profileStatus: state.profileReducer.status,
   };
 };
 

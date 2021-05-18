@@ -3,11 +3,8 @@ import User from "./User/User";
 import style from "./Users.module.css";
 
 const Users = (props) => {
-  let pagesCount = Math.ceil(props.totalCount / 50);
   const setNextPage = () => {
-    if (props.currentPage < pagesCount) {
-      props.getNewUsers(props.currentPage + 1);
-    }
+    props.getNewUsers(props.currentPage + 1);
   };
 
   const setPervousPage = () => {

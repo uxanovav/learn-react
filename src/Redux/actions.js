@@ -13,9 +13,10 @@ import {
   SET_CURRENT_PAGE,
   SET_IS_FETCHING,
   SET_IS_FOLLOWING,
+  GET_STATUS,
 } from "./types";
 
-import { authAPI, userAPI } from "../api/api";
+import { authAPI, profileAPI, userAPI } from "../api/api";
 
 export const usersActions = {
   userFollowing: (id) => {
@@ -53,11 +54,11 @@ export const usersActions = {
       });
     };
   },
-  getNewUsers: (pagreNumber) => {
+  getNewUsers: (pageNumber) => {
     return (dispatch) => {
       dispatch({ type: SET_IS_FETCHING, isFetching: true });
-      dispatch({ type: SET_CURRENT_PAGE, pagreNumber });
-      userAPI.getUsers(pagreNumber).then((response) => {
+      dispatch({ type: SET_CURRENT_PAGE, pageNumber });
+      userAPI.getUsers(pageNumber).then((response) => {
         dispatch({
           type: SET_USERS,
           users: response.data.items,
@@ -82,8 +83,17 @@ export const profileActions = {
   deletePost: (payload) => {
     return { type: DELETE_POST, payload };
   },
-  setProfile: (payload) => {
-    return { type: SET_PROFILE, payload };
+  setProfile: (id) => {
+    return (dispatch) => {
+      dispatch({ type: SET_IS_FETCHING, isFetching: true });
+      profileAPI.getProfile(id).then((response) => {
+        dispatch({ type: SET_PROFILE, payload: response.data });
+        dispatch({ type: SET_IS_FETCHING, isFetching: false });
+      });
+      profileAPI.getStatus(id).then((response) => {
+        dispatch({ type: GET_STATUS, payload: response.data });
+      });
+    };
   },
 };
 
